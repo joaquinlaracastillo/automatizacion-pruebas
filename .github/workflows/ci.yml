@@ -1,4 +1,4 @@
-name: Java CI - Pruebas Automatizadas
+name: Java CI - Pruebas Automatizadas y BDD
 
 on:
   push:
@@ -22,7 +22,7 @@ jobs:
           distribution: temurin
           java-version: '17'
 
-      - name: Compilar y ejecutar pruebas
+      - name: Compilar y ejecutar pruebas unitarias y BDD
         run: mvn test
 
       - name: Guardar reportes de pruebas
