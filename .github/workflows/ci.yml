@@ -14,10 +14,10 @@ jobs:
 
     steps:
       - name: Descargar código
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Configurar Java 17
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v5
         with:
           distribution: temurin
           java-version: '17'
@@ -26,13 +26,13 @@ jobs:
         run: mvn test
 
       - name: Guardar reportes de pruebas unitarias
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: reporte-pruebas-unitarias
           path: target/surefire-reports/
 
       - name: Guardar reporte BDD de Cucumber
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: reporte-bdd-cucumber
-          path: target/cucumber-reports/cucumber-html-reports/
+          path: target/cucumber-reports/cucumber.html
