@@ -1,63 +1,77 @@
-# Automatización de Pruebas
+# 🧪 Automatización de Pruebas
 
-## Descripción del proyecto
+## 📌 Descripción del proyecto
 
-Este proyecto corresponde a una implementación de automatización de pruebas utilizando Java, Maven, JUnit 5, Git y GitHub Actions.
+Este proyecto corresponde a una implementación de automatización de pruebas para una aplicación básica desarrollada en Java.
 
-El proyecto consiste en una calculadora básica que permite realizar operaciones de suma y resta. Para comprobar el correcto funcionamiento de estas operaciones, se implementaron pruebas unitarias automatizadas.
+La aplicación consiste en una **calculadora** capaz de realizar operaciones de suma y resta. Para validar su correcto funcionamiento se implementaron diferentes niveles de pruebas:
 
-Además, se configuró un pipeline de Integración Continua (CI) mediante GitHub Actions, permitiendo ejecutar automáticamente las pruebas cada vez que se realizan cambios en el repositorio.
+- Pruebas Unitarias con JUnit 5.
+- Pruebas BDD con Cucumber y Gherkin.
+- Integración Continua mediante GitHub Actions.
+- Pruebas de Performance utilizando Apache JMeter.
+- Generación y análisis de métricas de rendimiento.
+- Dashboard de resultados de performance.
+
+El objetivo principal del proyecto es demostrar un flujo básico de aseguramiento de calidad, integrando pruebas funcionales, automatización, integración continua y pruebas de rendimiento.
 
 ---
 
-## Objetivos
+# 🎯 Objetivos
 
 - Implementar pruebas unitarias automatizadas.
-- Utilizar Maven para la gestión de dependencias y ejecución de pruebas.
+- Utilizar Maven para gestionar dependencias y ejecutar pruebas.
 - Aplicar pruebas atómicas e independientes.
 - Utilizar Git para el control de versiones.
 - Trabajar utilizando ramas y commits.
-- Implementar un pipeline de Integración Continua con GitHub Actions.
-- Ejecutar automáticamente las pruebas.
-- Generar y almacenar reportes de pruebas.
+- Implementar Integración Continua mediante GitHub Actions.
+- Ejecutar automáticamente las pruebas funcionales.
+- Implementar pruebas BDD utilizando Cucumber.
+- Documentar criterios de aceptación mediante Three Amigos.
+- Crear escenarios utilizando Gherkin.
+- Implementar pruebas básicas de performance.
+- Analizar métricas como TPS, latencia y porcentaje de errores.
+- Generar un dashboard de resultados.
 
 ---
 
-## Tecnologías utilizadas
+# 🛠 Tecnologías utilizadas
 
-El proyecto utiliza las siguientes tecnologías:
-
-- Java 17
-- Maven
-- JUnit 5
-- Git
-- GitHub
-- GitHub Actions
+| Tecnología | Uso |
+|---|---|
+| Java 17 | Desarrollo de la aplicación |
+| Maven | Gestión de dependencias y ejecución |
+| JUnit 5 | Pruebas unitarias |
+| Cucumber | Pruebas BDD |
+| Gherkin | Definición de escenarios |
+| Git | Control de versiones |
+| GitHub | Repositorio remoto |
+| GitHub Actions | Integración Continua |
+| Apache JMeter | Pruebas de Performance |
 
 ---
 
-## Estructura del proyecto
+# 📁 Estructura del proyecto
 
 ```text
 automatizacion-pruebas/
-│
 ├── .github/
 │   └── workflows/
 │       └── ci.yml
-│
+├── performance/
+│   ├── prueba-performance-calculadora.jmx
+│   ├── resultados.jtl
+│   └── reporte-html/
+│       ├── index.html
+│       └── statistics.json
 ├── src/
-│   ├── main/
-│   │   └── java/
-│   │       └── org/
-│   │           └── example/
-│   │               └── Calculadora.java
-│   │
+│   ├── main/java/org/example/Calculadora.java
 │   └── test/
-│       └── java/
-│           └── org/
-│               └── example/
-│                   └── CalculadoraTest.java
-│
+│       ├── java/org/example/
+│       │   ├── CalculadoraTest.java
+│       │   ├── CucumberTestRunner.java
+│       │   └── steps/CalculadoraSteps.java
+│       └── resources/features/calculadora.feature
 ├── .gitignore
 ├── pom.xml
 └── README.md
@@ -65,235 +79,466 @@ automatizacion-pruebas/
 
 ---
 
-## Funcionalidades implementadas
+# 🧮 Funcionalidades implementadas
 
-La aplicación contiene una clase llamada `Calculadora` que implementa las siguientes operaciones:
+La aplicación contiene una clase llamada `Calculadora` que permite realizar las siguientes operaciones:
 
 - Suma de dos números.
 - Resta de dos números.
 
+Estas funcionalidades fueron validadas mediante pruebas unitarias y pruebas BDD.
+
 ---
 
+# 👥 Simulación de sesión Three Amigos
 
-## Simulación de sesión Three Amigos
+Para definir correctamente el comportamiento esperado de la calculadora se realizó una simulación de la técnica **Three Amigos**.
 
-Para definir y validar la funcionalidad de la calculadora se realizó una simulación de una sesión **Three Amigos**.
+Esta técnica permite reunir diferentes perspectivas antes de implementar una funcionalidad.
 
-Esta técnica permite reunir diferentes perspectivas antes de implementar y automatizar las pruebas de una funcionalidad.
+## Participantes
 
-### Participantes y roles
+### 👤 Product Owner
 
-#### Product Owner
-
-Representa las necesidades del usuario y define el comportamiento esperado de la funcionalidad.
-
-En esta simulación, el Product Owner definió la siguiente necesidad:
+Representa las necesidades del usuario y define el comportamiento esperado.
 
 > Como usuario, quiero realizar operaciones de suma y resta para obtener resultados matemáticos correctos.
 
-### Desarrollador
+### 👨‍💻 Desarrollador
 
-Es responsable de analizar la implementación técnica de la funcionalidad.
+Se definió que la clase `Calculadora` debía contener métodos independientes:
 
-Durante la sesión se definió que la clase `Calculadora` debía contener métodos independientes para las operaciones:
-
-- `sumar()`
-- `restar()`
+```text
+sumar()
+restar()
+```
 
 Cada método recibe dos números como parámetros y devuelve el resultado correspondiente.
 
-### QA / Tester
+### 🧪 QA / Tester
 
-Es responsable de definir los criterios de aceptación y los escenarios que permitirán comprobar que la funcionalidad cumple con los requisitos.
+Se propusieron:
 
-Se propusieron pruebas automatizadas unitarias y escenarios BDD para validar las operaciones.
+- Pruebas Unitarias.
+- Escenarios BDD.
+- Pruebas de Performance.
 
 ---
 
-## Criterios de aceptación
-
-Durante la sesión se definieron los siguientes criterios de aceptación:
+# ✅ Criterios de aceptación
 
 1. La calculadora debe sumar correctamente dos números.
 2. La calculadora debe restar correctamente dos números.
 3. Cada operación debe poder validarse de manera independiente.
-4. Los resultados obtenidos deben coincidir con los valores esperados.
-5. Las pruebas automatizadas deben ejecutarse correctamente de forma local.
-6. Las pruebas deben ejecutarse automáticamente mediante el pipeline de Integración Continua.
+4. Los resultados deben coincidir con los valores esperados.
+5. Las pruebas unitarias deben ejecutarse correctamente.
+6. Los escenarios BDD deben ejecutarse correctamente.
+7. Las pruebas deben ejecutarse automáticamente mediante CI.
+8. La aplicación debe responder correctamente durante una prueba básica de carga.
 
 ---
 
-## Ejemplos discutidos
+# 🧪 Pruebas Unitarias
 
-Durante la simulación se analizaron los siguientes ejemplos:
+Las pruebas unitarias fueron implementadas utilizando **JUnit 5**.
 
-### Ejemplo 1: Suma
+## Prueba de suma
 
-**Dado** que el usuario tiene los números 5 y 3.
+```text
+5 + 3 = 8
+```
 
-**Cuando** realiza una operación de suma.
+## Prueba de resta
 
-**Entonces** el resultado debe ser 8.
+```text
+10 - 4 = 6
+```
 
-### Ejemplo 2: Resta
+Las pruebas fueron diseñadas de forma:
 
-**Dado** que el usuario tiene los números 10 y 4.
+- Atómica.
+- Independiente.
+- Automatizada.
 
-**Cuando** realiza una operación de resta.
+### Resultado
 
-**Entonces** el resultado debe ser 6.
-
-### Ejemplo 3: Diferentes valores de resta
-
-También se consideraron diferentes combinaciones de números para validar que la operación de resta funcione correctamente con distintos valores.
-
-Estos ejemplos fueron utilizados posteriormente para definir escenarios automatizados utilizando Gherkin y Cucumber.
-
----
-
-## Resultado de la sesión
-
-La simulación Three Amigos permitió definir de manera conjunta el comportamiento esperado de la calculadora desde tres perspectivas diferentes:
-
-- **Negocio:** necesidad y comportamiento esperado.
-- **Desarrollo:** implementación técnica de las operaciones.
-- **Testing:** criterios de aceptación y escenarios de prueba.
-
-Como resultado, se obtuvo una definición clara de la funcionalidad antes de su automatización, facilitando la creación de pruebas unitarias y escenarios BDD.
-
-## Pruebas unitarias
-
-Las pruebas unitarias fueron implementadas utilizando JUnit 5.
-
-### Prueba de suma
-
-Se verifica que la suma de los números 5 y 3 sea igual a 8.
-
-### Prueba de resta
-
-Se verifica que la resta de los números 10 y 4 sea igual a 6.
-
-Las pruebas fueron diseñadas de manera atómica e independiente, permitiendo validar cada funcionalidad por separado.
+```text
+Tests ejecutados: 2
+Pruebas exitosas: 2
+Fallos: 0
+Errores: 0
+```
 
 ---
 
-## Ejecución de pruebas
+# 🥒 Pruebas BDD
 
-Las pruebas pueden ejecutarse desde IntelliJ IDEA o mediante Maven.
+Las pruebas BDD fueron implementadas utilizando:
 
-Para ejecutar las pruebas desde la terminal se utiliza el siguiente comando:
+- Cucumber.
+- Gherkin.
+- Maven.
+
+Los escenarios fueron definidos en:
+
+```text
+src/test/resources/features/calculadora.feature
+```
+
+## Escenario de suma
+
+```gherkin
+Scenario: Sumar dos números
+
+Given tengo una calculadora
+When sumo 5 y 3
+Then el resultado debe ser 8
+```
+
+También se implementaron diferentes ejemplos para validar la operación de resta.
+
+### Resultado de ejecución
+
+```text
+4 tests passed
+4 tests total
+Process finished with exit code 0
+```
+
+Esto confirma que todos los escenarios BDD fueron ejecutados correctamente.
+
+---
+
+# ⚙️ Ejecución de pruebas
+
+Las pruebas pueden ejecutarse utilizando Maven:
 
 ```bash
 ./mvnw.cmd test
 ```
 
-Este comando compila el proyecto y ejecuta automáticamente las pruebas unitarias.
+Este comando permite:
+
+1. Compilar el proyecto.
+2. Ejecutar las pruebas unitarias.
+3. Ejecutar las pruebas configuradas en el proyecto.
 
 ---
 
-## Control de versiones
+# 🌿 Control de versiones
 
-Para el desarrollo del proyecto se utilizó Git como sistema de control de versiones.
+Para el desarrollo se utilizó Git como sistema de control de versiones.
 
-Se creó una rama para trabajar en la implementación de las pruebas unitarias:
+Se trabajó utilizando ramas para separar funcionalidades. Entre las ramas utilizadas se encuentran:
 
 ```text
+main
 feature/pruebas-unitarias
+feature/pruebas-rendimiento
 ```
 
-Durante el desarrollo se realizaron commits para registrar los cambios realizados.
-
-Posteriormente, los cambios fueron integrados con la rama principal `main`.
+Los cambios fueron registrados mediante commits y posteriormente enviados al repositorio remoto en GitHub.
 
 ---
 
-## Integración Continua
+# 🚀 Integración Continua
 
-Se configuró un pipeline de Integración Continua utilizando GitHub Actions.
+Se configuró un pipeline de Integración Continua utilizando **GitHub Actions**.
 
-El archivo de configuración del pipeline se encuentra en:
+El archivo de configuración se encuentra en:
 
 ```text
 .github/workflows/ci.yml
 ```
 
-El pipeline se ejecuta automáticamente cuando se realiza un `push` al repositorio.
+## Flujo del pipeline
 
-Las principales acciones realizadas por el pipeline son:
+El proceso realiza las siguientes acciones:
 
-1. Descargar el código del repositorio.
-2. Configurar Java 17.
-3. Compilar el proyecto.
-4. Ejecutar las pruebas unitarias.
-5. Generar los reportes de pruebas.
-6. Guardar los reportes como un Artifact en GitHub Actions.
+1. Descarga el código del repositorio.
+2. Configura Java.
+3. Configura Maven.
+4. Compila el proyecto.
+5. Ejecuta las pruebas unitarias.
+6. Ejecuta los escenarios BDD.
+7. Genera los resultados correspondientes.
+8. Publica reportes como Artifacts cuando corresponde.
 
----
-
-## Resultados de las pruebas
-
-Las pruebas unitarias fueron ejecutadas correctamente tanto de forma local como mediante el pipeline de GitHub Actions.
-
-Resultados obtenidos:
-
-- Tests ejecutados: 2
-- Fallos: 0
-- Errores: 0
-- Pruebas exitosas: 2
-
-El proceso de compilación finalizó correctamente con:
-
-```text
-BUILD SUCCESS
-```
-
-El pipeline de GitHub Actions también finalizó con estado:
-
-```text
-Success
-```
+Los resultados observados muestran ejecuciones exitosas del pipeline.
 
 ---
 
-## Reportes de pruebas
+# 📊 Pruebas de Performance
 
-Los resultados de las pruebas son generados durante la ejecución del proyecto.
+Para evaluar el rendimiento de la aplicación se implementó una prueba básica utilizando **Apache JMeter**.
 
-El pipeline de GitHub Actions guarda los reportes generados como un Artifact llamado:
+El archivo de configuración se encuentra en:
 
 ```text
-reporte-pruebas
+performance/prueba-performance-calculadora.jmx
 ```
 
-Este Artifact permite descargar y revisar los resultados generados durante la ejecución automática del pipeline.
+La prueba fue ejecutada contra una API HTTP.
 
 ---
 
-## Flujo de trabajo realizado
+# 📈 Resultados de Performance
 
-El flujo de trabajo del proyecto fue el siguiente:
+Durante la ejecución se realizaron:
+
+```text
+Solicitudes ejecutadas: 200
+Errores: 0
+Porcentaje de error: 0.00%
+Solicitudes exitosas: 100%
+```
+
+## Métricas obtenidas
+
+| Métrica | Resultado |
+|---|---:|
+| Solicitudes ejecutadas | 200 |
+| Solicitudes exitosas | 100% |
+| Errores | 0 |
+| Porcentaje de error | 0.00% |
+| Tiempo promedio | 169.21 ms |
+| Tiempo mínimo | 112 ms |
+| Tiempo máximo | 896 ms |
+| Mediana | 133 ms |
+| Percentil 90 | 338 ms |
+| Percentil 95 | 369.90 ms |
+| Percentil 99 | 804.84 ms |
+| Throughput | 0.64 TPS |
+
+---
+
+# 🔍 Análisis de TPS, Latencia y Errores
+
+## ⚡ TPS / Throughput
+
+El throughput obtenido fue:
+
+```text
+0.64 TPS
+```
+
+Esto representa aproximadamente la cantidad de transacciones procesadas por segundo durante la prueba realizada.
+
+Debido a que se trata de una prueba básica y controlada, este valor debe analizarse considerando la configuración utilizada en JMeter.
+
+## ⏱ Latencia y tiempos de respuesta
+
+El tiempo promedio de respuesta fue:
+
+```text
+169.21 ms
+```
+
+La mediana fue:
+
+```text
+133 ms
+```
+
+Esto indica que una gran parte de las solicitudes tuvo tiempos de respuesta cercanos a ese valor.
+
+Sin embargo, se registró un tiempo máximo de:
+
+```text
+896 ms
+```
+
+Esto demuestra que algunas solicitudes presentaron tiempos de respuesta superiores al promedio.
+
+Los percentiles obtenidos fueron:
+
+| Percentil | Tiempo |
+|---|---:|
+| P90 | 338 ms |
+| P95 | 369.90 ms |
+| P99 | 804.84 ms |
+
+El percentil 99 muestra que el 99% de las solicitudes tuvo un tiempo de respuesta igual o inferior a aproximadamente 804.84 ms.
+
+## ❌ Errores
+
+La prueba obtuvo:
+
+```text
+0 errores
+0.00% de error
+```
+
+Esto significa que las 200 solicitudes ejecutadas fueron procesadas correctamente.
+
+El dashboard de JMeter mostró:
+
+```text
+PASS: 100%
+FAIL: 0%
+```
+
+---
+
+# 📊 Dashboard de Performance
+
+JMeter generó un reporte HTML navegable con las métricas de la prueba.
+
+El reporte se encuentra en:
+
+```text
+performance/reporte-html/index.html
+```
+
+El dashboard permite visualizar:
+
+- Estado de las solicitudes.
+- Solicitudes exitosas y fallidas.
+- Número de muestras ejecutadas.
+- Tiempo promedio.
+- Tiempo mínimo y máximo.
+- Mediana.
+- Percentiles.
+- Throughput.
+- Errores.
+
+## Resultado del Dashboard
+
+🟢 **200 solicitudes ejecutadas**
+
+🟢 **100% exitosas**
+
+🟢 **0 errores**
+
+🟢 **0.00% de error**
+
+---
+
+# 🚨 Propuesta de Alertas Automáticas
+
+Como propuesta para una futura implementación de monitoreo automático, se podrían definir alertas basadas en las métricas de rendimiento.
+
+| Métrica | Condición de alerta |
+|---|---|
+| Porcentaje de errores | Mayor a 5% |
+| Tiempo promedio | Mayor a 500 ms |
+| Percentil 95 | Mayor a 1 segundo |
+| Percentil 99 | Mayor a 2 segundos |
+| Disponibilidad | Menor al 95% |
+
+## Ejemplo de alerta
+
+```text
+ALERTA DE PERFORMANCE
+
+Porcentaje de errores superior al límite permitido.
+
+Límite: 5%
+Resultado actual: 6%
+Estado: ALERTA
+```
+
+Esta propuesta podría integrarse en el futuro con:
+
+- GitHub Actions.
+- Correo electrónico.
+- Slack.
+- Microsoft Teams.
+- Sistemas de monitoreo.
+
+---
+
+# 📊 Dashboard General de Calidad
+
+| Área | Herramienta | Estado | Resultado |
+|---|---|---|---|
+| Pruebas Unitarias | JUnit 5 | 🟢 PASS | 2 pruebas exitosas |
+| Pruebas BDD | Cucumber | 🟢 PASS | 4 escenarios ejecutados |
+| Integración Continua | GitHub Actions | 🟢 PASS | Pipeline exitoso |
+| Pruebas Performance | Apache JMeter | 🟢 PASS | 200 solicitudes |
+| Errores Performance | Apache JMeter | 🟢 PASS | 0 errores |
+| Dashboard Performance | JMeter HTML Report | 🟢 PASS | Reporte navegable |
+
+---
+
+# 🟢 Estado General del Proyecto
+
+🟢 **Pruebas Unitarias:** Correctas
+
+🟢 **Pruebas BDD:** Correctas
+
+🟢 **Pipeline de Integración Continua:** Funcionando
+
+🟢 **Pruebas de Performance:** Correctas
+
+🟢 **Errores de Performance:** 0%
+
+🟢 **Dashboard de Métricas:** Generado correctamente
+
+⚠️ **Alertas Automáticas:** Propuesta documentada para futura implementación
+
+---
+
+# 📋 Flujo de trabajo realizado
 
 1. Creación del proyecto Maven.
 2. Configuración de Java y Maven.
 3. Implementación de la clase `Calculadora`.
 4. Implementación de pruebas unitarias con JUnit 5.
-5. Ejecución local de las pruebas.
-6. Creación de una rama para las pruebas unitarias.
-7. Registro de cambios mediante Git.
-8. Integración de los cambios en la rama principal.
-9. Creación del repositorio remoto en GitHub.
-10. Configuración del pipeline de Integración Continua.
-11. Ejecución automática de las pruebas mediante GitHub Actions.
-12. Generación y almacenamiento de reportes de pruebas.
+5. Ejecución local de pruebas unitarias.
+6. Creación de ramas para organizar el trabajo.
+7. Uso de Git y commits.
+8. Configuración del repositorio remoto.
+9. Implementación de GitHub Actions.
+10. Ejecución automática de pruebas en CI.
+11. Simulación de sesión Three Amigos.
+12. Definición de criterios de aceptación.
+13. Creación de escenarios Gherkin.
+14. Configuración de Cucumber.
+15. Implementación de Step Definitions.
+16. Ejecución de pruebas BDD.
+17. Generación de reportes BDD.
+18. Implementación de una prueba básica de Performance.
+19. Ejecución de pruebas utilizando Apache JMeter.
+20. Análisis de TPS, latencia y errores.
+21. Generación de un Dashboard HTML de Performance.
+22. Documentación de una propuesta de alertas automáticas.
 
 ---
 
-## Conclusión
+# 🏁 Conclusión
 
-El proyecto permitió implementar un flujo básico de automatización de pruebas utilizando herramientas de desarrollo modernas.
+El proyecto permitió implementar un flujo completo y básico de automatización de pruebas utilizando diferentes herramientas y metodologías.
 
-Mediante JUnit 5 se realizaron pruebas unitarias para validar las funcionalidades de la calculadora. Maven permitió gestionar las dependencias y ejecutar las pruebas, mientras que Git permitió mantener el control de versiones del proyecto.
+Las pruebas unitarias permitieron validar individualmente las operaciones principales de la calculadora.
 
-Finalmente, GitHub Actions permitió implementar un proceso de Integración Continua, ejecutando automáticamente las pruebas y almacenando los resultados como reportes.
+Las pruebas BDD permitieron definir el comportamiento esperado utilizando escenarios escritos en lenguaje comprensible mediante Gherkin y ejecutados con Cucumber.
 
-Este flujo permite detectar errores de forma temprana y mantener un proceso de desarrollo más automatizado y confiable.
+Git y GitHub permitieron gestionar el código fuente mediante ramas y commits, mientras que GitHub Actions permitió automatizar la ejecución de pruebas mediante un pipeline de Integración Continua.
+
+Finalmente, Apache JMeter permitió realizar una prueba básica de rendimiento y analizar métricas importantes como:
+
+- Tiempo promedio de respuesta.
+- Latencia.
+- Percentiles.
+- Throughput.
+- Porcentaje de errores.
+
+Los resultados obtenidos fueron satisfactorios para la prueba realizada, alcanzando un **100% de solicitudes exitosas y 0 errores**.
+
+El proyecto demuestra la integración de pruebas funcionales, BDD, Integración Continua y pruebas de Performance dentro de un mismo flujo de aseguramiento de calidad.
+
+---
+
+# 📸 Evidencias
+
+Las evidencias del proyecto incluyen capturas de:
+
+- Ejecución exitosa de pruebas unitarias.
+- Ejecución exitosa de pruebas BDD.
+- Pipeline exitoso en GitHub Actions.
+- Dashboard de Apache JMeter.
+- Métricas de Performance.
+- Reportes generados.
+
+Estas evidencias pueden utilizarse como respaldo para la documentación y entrega final del proyecto.
