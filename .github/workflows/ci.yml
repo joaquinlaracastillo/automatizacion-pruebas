@@ -25,8 +25,14 @@ jobs:
       - name: Compilar y ejecutar pruebas unitarias y BDD
         run: mvn test
 
-      - name: Guardar reportes de pruebas
+      - name: Guardar reportes de pruebas unitarias
         uses: actions/upload-artifact@v4
         with:
-          name: reporte-pruebas
+          name: reporte-pruebas-unitarias
           path: target/surefire-reports/
+
+      - name: Guardar reporte BDD de Cucumber
+        uses: actions/upload-artifact@v4
+        with:
+          name: reporte-bdd-cucumber
+          path: target/cucumber-reports/

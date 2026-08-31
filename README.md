@@ -74,6 +74,93 @@ La aplicación contiene una clase llamada `Calculadora` que implementa las sigui
 
 ---
 
+
+## Simulación de sesión Three Amigos
+
+Para definir y validar la funcionalidad de la calculadora se realizó una simulación de una sesión **Three Amigos**.
+
+Esta técnica permite reunir diferentes perspectivas antes de implementar y automatizar las pruebas de una funcionalidad.
+
+### Participantes y roles
+
+#### Product Owner
+
+Representa las necesidades del usuario y define el comportamiento esperado de la funcionalidad.
+
+En esta simulación, el Product Owner definió la siguiente necesidad:
+
+> Como usuario, quiero realizar operaciones de suma y resta para obtener resultados matemáticos correctos.
+
+### Desarrollador
+
+Es responsable de analizar la implementación técnica de la funcionalidad.
+
+Durante la sesión se definió que la clase `Calculadora` debía contener métodos independientes para las operaciones:
+
+- `sumar()`
+- `restar()`
+
+Cada método recibe dos números como parámetros y devuelve el resultado correspondiente.
+
+### QA / Tester
+
+Es responsable de definir los criterios de aceptación y los escenarios que permitirán comprobar que la funcionalidad cumple con los requisitos.
+
+Se propusieron pruebas automatizadas unitarias y escenarios BDD para validar las operaciones.
+
+---
+
+## Criterios de aceptación
+
+Durante la sesión se definieron los siguientes criterios de aceptación:
+
+1. La calculadora debe sumar correctamente dos números.
+2. La calculadora debe restar correctamente dos números.
+3. Cada operación debe poder validarse de manera independiente.
+4. Los resultados obtenidos deben coincidir con los valores esperados.
+5. Las pruebas automatizadas deben ejecutarse correctamente de forma local.
+6. Las pruebas deben ejecutarse automáticamente mediante el pipeline de Integración Continua.
+
+---
+
+## Ejemplos discutidos
+
+Durante la simulación se analizaron los siguientes ejemplos:
+
+### Ejemplo 1: Suma
+
+**Dado** que el usuario tiene los números 5 y 3.
+
+**Cuando** realiza una operación de suma.
+
+**Entonces** el resultado debe ser 8.
+
+### Ejemplo 2: Resta
+
+**Dado** que el usuario tiene los números 10 y 4.
+
+**Cuando** realiza una operación de resta.
+
+**Entonces** el resultado debe ser 6.
+
+### Ejemplo 3: Diferentes valores de resta
+
+También se consideraron diferentes combinaciones de números para validar que la operación de resta funcione correctamente con distintos valores.
+
+Estos ejemplos fueron utilizados posteriormente para definir escenarios automatizados utilizando Gherkin y Cucumber.
+
+---
+
+## Resultado de la sesión
+
+La simulación Three Amigos permitió definir de manera conjunta el comportamiento esperado de la calculadora desde tres perspectivas diferentes:
+
+- **Negocio:** necesidad y comportamiento esperado.
+- **Desarrollo:** implementación técnica de las operaciones.
+- **Testing:** criterios de aceptación y escenarios de prueba.
+
+Como resultado, se obtuvo una definición clara de la funcionalidad antes de su automatización, facilitando la creación de pruebas unitarias y escenarios BDD.
+
 ## Pruebas unitarias
 
 Las pruebas unitarias fueron implementadas utilizando JUnit 5.
