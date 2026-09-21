@@ -1,4 +1,4 @@
-name: Java CI - Pruebas Automatizadas y BDD
+name: Java CI - Build y Pruebas Automatizadas
 
 on:
   push:
@@ -22,13 +22,16 @@ jobs:
           distribution: temurin
           java-version: '17'
 
-      - name: Compilar y ejecutar pruebas unitarias y BDD
+      - name: Compilar proyecto
+        run: mvn clean compile
+
+      - name: Ejecutar pruebas unitarias e integración
         run: mvn test
 
-      - name: Guardar reportes de pruebas unitarias
+      - name: Guardar reportes de pruebas
         uses: actions/upload-artifact@v5
         with:
-          name: reporte-pruebas-unitarias
+          name: reporte-pruebas
           path: target/surefire-reports/
 
       - name: Guardar reporte BDD de Cucumber
