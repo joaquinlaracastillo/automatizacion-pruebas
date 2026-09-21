@@ -1,6 +1,10 @@
 name: Deployment Pipeline - Ambiente de Prueba
 
 on:
+  push:
+    branches:
+      - feature/pruebas-integracion
+
   workflow_dispatch:
     inputs:
       simular_fallo:
