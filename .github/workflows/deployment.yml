@@ -1,0 +1,106 @@
+name: Deployment Pipeline - Ambiente de Prueba
+
+on:
+  workflow_dispatch:
+    inputs:
+      simular_fallo:
+        description: 'Simular fallo para demostrar rollback'
+        required: true
+        default: false
+        type: boolean
+
+jobs:
+  deployment:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar código
+        uses: actions/checkout@v5
+
+      - name: Configurar Java 17
+        uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      # =========================
+      # STAGE 1 - BUILD
+      # =========================
+      - name: Build - Generar artefacto
+        run: mvn clean package -DskipTests
+
+      # =========================
+      # STAGE 2 - ACCEPTANCE TESTS
+      # =========================
+      - name: Acceptance Tests
+        run: mvn -Dtest=CalculadoraAcceptanceTest test
+
+      # =========================
+      # STAGE 3 - DEPLOY
+      # =========================
+      - name: Deploy - Preparar ambiente de prueba
+        run: |
+          mkdir -p test-environment/blue
+          mkdir -p test-environment/green
+          mkdir -p test-environment/active
+
+          cp target/*.jar test-environment/blue/aplicacion.jar
+
+          echo "Ambiente BLUE preparado."
+
+      - name: Deploy - Nueva versión GREEN
+        run: |
+          cp target/*.jar test-environment/green/aplicacion.jar
+
+          echo "Nueva versión GREEN desplegada."
+          echo "Ambiente de prueba actualizado."
+
+      # =========================
+      # STAGE 4 - VERIFICACIÓN
+      # =========================
+      - name: Verificar despliegue
+        run: |
+          if [ ! -f test-environment/green/aplicacion.jar ]; then
+            echo "ERROR: El artefacto no fue desplegado."
+            exit 1
+          fi
+
+          echo "Verificación del despliegue exitosa."
+
+      # =========================
+      # SIMULACIÓN DE FALLA
+      # =========================
+      - name: Simular fallo de despliegue
+        if: ${{ inputs.simular_fallo == true }}
+        run: |
+          echo "ERROR SIMULADO: La nueva versión presenta un problema."
+          exit 1
+
+      # =========================
+      # ACTIVAR GREEN
+      # =========================
+      - name: Activar versión GREEN
+        run: |
+          cp test-environment/green/aplicacion.jar \
+             test-environment/active/aplicacion.jar
+
+          echo "Versión GREEN activada correctamente."
+
+      # =========================
+      # ROLLBACK
+      # =========================
+      - name: Ejecutar rollback
+        if: failure()
+        run: |
+          echo "Iniciando rollback..."
+
+          if [ -f test-environment/blue/aplicacion.jar ]; then
+            cp test-environment/blue/aplicacion.jar \
+               test-environment/active/aplicacion.jar
+
+            echo "Rollback ejecutado correctamente."
+            echo "La versión BLUE vuelve a estar activa."
+          else
+            echo "No existe una versión BLUE disponible para rollback."
+            exit 1
+          fi
